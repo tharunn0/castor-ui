@@ -12,7 +12,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # Docs & Planning specifications
-docs/
+/docs/
 roadmap.md
 DESIGN.md
 

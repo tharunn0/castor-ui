@@ -47,8 +47,8 @@ export function AuthModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs animate-in fade-in duration-150">
-      <Card className="w-full max-w-sm shadow-xl border-border">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-md animate-in fade-in duration-150">
+      <Card className="w-full max-w-sm shadow-2xl border border-border bg-white dark:bg-zinc-950 text-foreground">
         <CardHeader className="relative pb-3">
           <button
             onClick={onClose}
@@ -62,13 +62,13 @@ export function AuthModal({
               {mode === 'login' ? <LogIn className="h-3.5 w-3.5" /> : <UserPlus className="h-3.5 w-3.5" />}
             </div>
             <CardTitle className="text-base">
-              {mode === 'login' ? 'Sign In to Castor' : 'Create Operator Account'}
+              {mode === 'login' ? 'Sign In to Castor' : 'Create Account'}
             </CardTitle>
           </div>
           <CardDescription className="text-xs">
             {mode === 'login'
-              ? 'Enter your credentials to access your storage buckets and S3 keypairs.'
-              : 'Register a new identity on this Castor cluster.'}
+              ? 'Enter your credentials to access your personal files.'
+              : 'Create a new account to get started with your private storage.'}
           </CardDescription>
         </CardHeader>
 
@@ -78,10 +78,10 @@ export function AuthModal({
               <label className="text-xs font-medium text-foreground">Email or Username</label>
               <input
                 type="text"
-                placeholder="admin@castor.local"
+                placeholder="user@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-md border border-input bg-background px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                className="w-full rounded-md border border-input bg-muted/30 px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                 required
               />
             </div>
@@ -93,7 +93,7 @@ export function AuthModal({
                 placeholder="••••••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-md border border-input bg-background px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                className="w-full rounded-md border border-input bg-muted/30 px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                 required
               />
             </div>
@@ -104,7 +104,7 @@ export function AuthModal({
               ) : mode === 'login' ? (
                 'Sign In'
               ) : (
-                'Register Account'
+                'Create Account'
               )}
             </Button>
 
@@ -134,9 +134,9 @@ export function AuthModal({
               )}
             </div>
 
-            <div className="flex items-center justify-center gap-1.5 text-[11px] text-muted-foreground font-mono">
+            <div className="flex items-center justify-center gap-1.5 text-[11px] text-muted-foreground">
               <ShieldCheck className="h-3 w-3 text-green-500" />
-              <span>BFF Session Auth (:9001)</span>
+              <span>Secure & Private Cloud Authentication</span>
             </div>
           </form>
         </CardContent>

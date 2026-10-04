@@ -4,6 +4,7 @@ import { CoverView } from '@/features/home/CoverView';
 import { BucketView } from '@/features/explorer/BucketView';
 import { ClusterHealthView } from '@/features/health/ClusterHealthView';
 import { KeysView } from '@/features/keys/KeysView';
+import { DocsView } from '@/features/docs/DocsView';
 import { AuthModal } from '@/features/auth/AuthModal';
 
 export default function App() {
@@ -22,7 +23,7 @@ export default function App() {
     setCurrentUser(email);
   };
 
-  const handleNavigateFromCover = (view: 'explorer' | 'health' | 'keys' | 'login' | 'register') => {
+  const handleNavigateFromCover = (view: 'explorer' | 'docs' | 'health' | 'keys' | 'login' | 'register') => {
     if (view === 'login' || view === 'register') {
       handleOpenAuth(view);
     } else {
@@ -46,6 +47,9 @@ export default function App() {
           <CoverView onNavigate={handleNavigateFromCover} />
         )}
         {currentTab === 'explorer' && <BucketView />}
+        {currentTab === 'docs' && (
+          <DocsView onNavigate={(tab) => setCurrentTab(tab)} />
+        )}
         {currentTab === 'health' && <ClusterHealthView />}
         {currentTab === 'keys' && <KeysView />}
       </main>

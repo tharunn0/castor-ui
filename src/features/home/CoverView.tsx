@@ -2,13 +2,12 @@ import { Cloud, ArrowRight, BookOpen, LogIn } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface CoverViewProps {
-  onNavigate: (view: 'explorer' | 'health' | 'keys' | 'login' | 'register') => void;
+  onNavigate: (view: 'explorer' | 'docs' | 'health' | 'keys' | 'login' | 'register') => void;
 }
 
 export function CoverView({ onNavigate }: CoverViewProps) {
   const handleOpenDocs = () => {
-    // Open project documentation in new window or route
-    window.open('https://github.com/tharun/castor', '_blank', 'noopener,noreferrer');
+    onNavigate('docs');
   };
 
   return (
