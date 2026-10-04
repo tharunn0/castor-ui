@@ -1,4 +1,4 @@
-import { Cloud, Folder, BookOpen, Home, LogIn } from 'lucide-react';
+import { Cloud, BookOpen, Home, LogIn } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export type NavTab = 'cover' | 'explorer' | 'docs' | 'health' | 'keys';
@@ -42,17 +42,6 @@ export function Header({
           >
             <Home className="h-3.5 w-3.5" />
             Home
-          </button>
-          <button
-            onClick={() => onTabChange('explorer')}
-            className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
-              activeTab === 'explorer'
-                ? 'bg-muted text-foreground'
-                : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
-            }`}
-          >
-            <Folder className="h-3.5 w-3.5" />
-            Files
           </button>
           <button
             onClick={() => onTabChange('docs')}
