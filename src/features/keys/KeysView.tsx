@@ -5,17 +5,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { CopyButton } from '@/components/shared/copy-button';
 import { S3Credential } from '@/types';
+import { INITIAL_S3_CREDENTIALS } from '@/mocks/initialData';
 
 export function KeysView() {
-  const [keys, setKeys] = useState<S3Credential[]>([
-    {
-      id: 'cred-1',
-      accessKeyId: 'AKIA_CASTOR_7F83B165',
-      createdAt: '2026-10-04T12:00:00Z',
-      status: 'ACTIVE',
-    },
-  ]);
-
+  const [keys, setKeys] = useState<S3Credential[]>(INITIAL_S3_CREDENTIALS);
   const [newKey, setNewKey] = useState<{ accessKeyId: string; secretAccessKey: string } | null>(null);
 
   const handleGenerateKey = () => {

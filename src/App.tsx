@@ -1,48 +1,75 @@
-import { Database, ShieldCheck } from 'lucide-react';
+import { useState } from 'react';
+import { Header, NavTab } from '@/layouts/Header';
+import { CoverView } from '@/features/home/CoverView';
+import { BucketView } from '@/features/explorer/BucketView';
+import { ClusterHealthView } from '@/features/health/ClusterHealthView';
+import { KeysView } from '@/features/keys/KeysView';
+import { AuthModal } from '@/features/auth/AuthModal';
 
 export default function App() {
-  return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
-      {/* Minimal Header */}
-      <header className="h-14 border-b border-border flex items-center justify-between px-6">
-        <div className="flex items-center gap-2 font-bold tracking-tight">
-          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary text-primary-foreground">
-            <Database className="h-4 w-4" />
-          </div>
-          <span className="tracking-wider">CASTOR</span>
-          <span className="text-xs text-muted-foreground font-mono ml-1">Console</span>
-        </div>
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <ShieldCheck className="h-4 w-4 text-green-500" />
-          <span className="font-mono">W=2 / R=3 Quorum</span>
-        </div>
-      </header>
+  const [currentTab, setCurrentTab] = useState<NavTab>('cover');
+  const [currentUser, setCurrentUser] = useState<string | null>(null);
+  const [authModal, setAuthModal] = useState<{ isOpen: boolean; mode: 'login' | 'register' }>({
+    isOpen: false,
+    mode: 'login',
+  });
 
-      {/* Main Container */}
-      <main className="flex-1 flex items-center justify-center p-6">
-        <div className="max-w-md w-full rounded-lg border border-border bg-surface p-6 shadow-sm space-y-4">
-          <div className="space-y-1">
-            <h1 className="text-base font-semibold tracking-tight">Castor UI — Phase 0 Ready</h1>
-            <p className="text-xs text-muted-foreground">
-              Vite, React 19, TypeScript, and Tailwind tokens initialized.
-            </p>
-          </div>
-          <div className="rounded-md border border-border bg-muted/40 p-3 font-mono text-xs space-y-1 text-muted-foreground">
-            <div className="flex justify-between">
-              <span>Status:</span>
-              <span className="text-green-500 font-medium">Scaffolding Complete</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Target BFF:</span>
-              <span className="text-foreground">http://localhost:9001</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Target S3:</span>
-              <span className="text-foreground">http://localhost:9000</span>
-            </div>
-          </div>
-        </div>
+  const handleOpenAuth = (mode: 'login' | 'register') => {
+    setAuthModal({ isOpen: true, mode });
+  };
+
+  const handleAuthSuccess = (email: string) => {
+    setCurrentUser(email);
+  };
+
+  const handleNavigateFromCover = (view: 'explorer' | 'health' | 'keys' | 'login' | 'register') => {
+    if (view === 'login' || view === 'register') {
+      handleOpenAuth(view);
+    } else {
+      setCurrentTab(view);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-background text-foreground flex flex-col antialiased">
+      {/* Global Header */}
+      <Header
+        activeTab={currentTab}
+        onTabChange={setCurrentTab}
+        currentUser={currentUser}
+        onOpenAuth={handleOpenAuth}
+      />
+
+      {/* Main Content View Switcher */}
+      <main className="flex-1 flex flex-col p-6 max-w-7xl mx-auto w-full">
+        {currentTab === 'cover' && (
+          <CoverView onNavigate={handleNavigateFromCover} />
+        )}
+        {currentTab === 'explorer' && <BucketView />}
+        {currentTab === 'health' && <ClusterHealthView />}
+        {currentTab === 'keys' && <KeysView />}
       </main>
+
+      {/* Auth Modal (Login / Register) */}
+      <AuthModal
+        mode={authModal.mode}
+        isOpen={authModal.isOpen}
+        onClose={() => setAuthModal((prev) => ({ ...prev, isOpen: false }))}
+        onSuccess={handleAuthSuccess}
+        onSwitchMode={(newMode) => setAuthModal({ isOpen: true, mode: newMode })}
+      />
+
+      {/* Global Footer */}
+      <footer className="border-t border-border py-4 px-6 text-center text-xs text-muted-foreground flex flex-col sm:flex-row items-center justify-between gap-2 max-w-7xl mx-auto w-full">
+        <div className="flex items-center gap-2">
+          <span className="font-semibold text-foreground">Castor UI</span>
+          <span>•</span>
+          <span>Stateless Browser BFF on Port :9001</span>
+        </div>
+        <div className="font-mono text-[11px]">
+          Linearizable Metadata (Raft) • Fixed 4MB Chunking (SHA-256)
+        </div>
+      </footer>
     </div>
   );
 }
