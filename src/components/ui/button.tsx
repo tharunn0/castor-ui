@@ -4,16 +4,16 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 export const buttonVariants = cva(
-  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ring-offset-background',
+  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ring-offset-background cursor-pointer hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]',
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm',
-        destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-sm',
-        outline: 'border border-border bg-transparent hover:bg-muted hover:text-foreground',
-        secondary: 'bg-muted text-foreground hover:bg-muted/80',
-        ghost: 'hover:bg-muted hover:text-foreground',
-        link: 'text-primary underline-offset-4 hover:underline',
+        default: 'bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md',
+        destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-sm hover:shadow-md',
+        outline: 'border border-border bg-transparent hover:bg-muted hover:border-foreground/30 hover:text-foreground shadow-2xs hover:shadow-xs',
+        secondary: 'bg-muted text-foreground hover:bg-muted/80 shadow-2xs hover:shadow-xs',
+        ghost: 'hover:bg-muted hover:text-foreground shadow-none hover:shadow-none',
+        link: 'text-primary underline-offset-4 hover:underline hover:translate-y-0 active:scale-100',
       },
       size: {
         default: 'h-9 px-4 py-2',

@@ -62,10 +62,10 @@ export function DocsView({ onNavigate }: DocsViewProps) {
               <button
                 key={item.id}
                 onClick={() => setActiveSection(item.id)}
-                className={`flex items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-medium transition-colors text-left whitespace-nowrap md:whitespace-normal ${
+                className={`flex items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-medium text-left whitespace-nowrap md:whitespace-normal cursor-pointer transition-all duration-150 ${
                   isActive
                     ? 'bg-primary text-primary-foreground shadow-xs'
-                    : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
+                    : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground hover:translate-x-1 active:translate-x-0.5'
                 }`}
               >
                 <Icon className="h-4 w-4 shrink-0" />
@@ -83,14 +83,14 @@ export function DocsView({ onNavigate }: DocsViewProps) {
             </span>
             <button
               onClick={() => onNavigate('health')}
-              className="w-full flex items-center justify-between px-3 py-1.5 rounded-md text-xs text-muted-foreground hover:bg-muted/50 hover:text-foreground transition-colors"
+              className="w-full flex items-center justify-between px-3 py-1.5 rounded-md text-xs text-muted-foreground hover:bg-muted/50 hover:text-foreground hover:translate-x-1 transition-all duration-150 cursor-pointer"
             >
               <span>Cluster Telemetry</span>
               <Activity className="h-3 w-3 text-emerald-500" />
             </button>
             <button
               onClick={() => onNavigate('keys')}
-              className="w-full flex items-center justify-between px-3 py-1.5 rounded-md text-xs text-muted-foreground hover:bg-muted/50 hover:text-foreground transition-colors"
+              className="w-full flex items-center justify-between px-3 py-1.5 rounded-md text-xs text-muted-foreground hover:bg-muted/50 hover:text-foreground hover:translate-x-1 transition-all duration-150 cursor-pointer"
             >
               <span>S3 Access Keys</span>
               <KeyRound className="h-3 w-3 text-blue-500" />

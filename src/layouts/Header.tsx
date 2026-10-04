@@ -22,22 +22,22 @@ export function Header({
       <div className="flex items-center gap-6">
         <button
           onClick={() => onTabChange('cover')}
-          className="flex items-center gap-2 font-semibold tracking-tight text-foreground hover:opacity-80 transition-opacity"
+          className="flex items-center gap-2 font-semibold tracking-tight text-foreground hover:opacity-85 hover:scale-[1.02] active:scale-[0.98] transition-all duration-150 cursor-pointer"
         >
-          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary text-primary-foreground">
+          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary text-primary-foreground shadow-2xs">
             <Cloud className="h-4 w-4" />
           </div>
           <span className="text-base font-bold tracking-wider">CASTOR</span>
         </button>
 
         {/* User Navigation Tabs */}
-        <nav className="flex items-center gap-1">
+        <nav className="flex items-center gap-1.5">
           <button
             onClick={() => onTabChange('cover')}
-            className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+            className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-all duration-150 cursor-pointer ${
               activeTab === 'cover'
-                ? 'bg-muted text-foreground'
-                : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
+                ? 'bg-muted text-foreground shadow-2xs'
+                : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground hover:-translate-y-0.5 active:translate-y-0'
             }`}
           >
             <Home className="h-3.5 w-3.5" />
@@ -45,10 +45,10 @@ export function Header({
           </button>
           <button
             onClick={() => onTabChange('docs')}
-            className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+            className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-all duration-150 cursor-pointer ${
               activeTab === 'docs'
-                ? 'bg-muted text-foreground'
-                : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
+                ? 'bg-muted text-foreground shadow-2xs'
+                : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground hover:-translate-y-0.5 active:translate-y-0'
             }`}
           >
             <BookOpen className="h-3.5 w-3.5" />

@@ -10,7 +10,7 @@ export function CoverView({ onNavigate }: CoverViewProps) {
     <div className="flex-1 flex flex-col items-center justify-center max-w-4xl mx-auto px-4 py-12 sm:py-16 space-y-16">
       {/* Hero Section */}
       <section className="text-center space-y-5 max-w-2xl mx-auto">
-        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-sm">
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-sm hover:scale-105 hover:shadow-md transition-all duration-300">
           <Cloud className="h-8 w-8" />
         </div>
 
@@ -63,7 +63,7 @@ export function CoverView({ onNavigate }: CoverViewProps) {
 
         {/* 4 Pillars of Everyday Value */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div className="rounded-xl border border-border bg-muted/20 p-5 space-y-2.5">
+          <div className="rounded-xl border border-border bg-muted/20 p-5 space-y-2.5 transition-all duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-sm">
             <div className="flex items-center gap-2.5 text-foreground font-semibold text-sm">
               <ShieldCheck className="h-4 w-4 text-primary" />
               <span>Complete Personal Privacy</span>
@@ -74,7 +74,7 @@ export function CoverView({ onNavigate }: CoverViewProps) {
             </p>
           </div>
 
-          <div className="rounded-xl border border-border bg-muted/20 p-5 space-y-2.5">
+          <div className="rounded-xl border border-border bg-muted/20 p-5 space-y-2.5 transition-all duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-sm">
             <div className="flex items-center gap-2.5 text-foreground font-semibold text-sm">
               <HeartHandshake className="h-4 w-4 text-primary" />
               <span>Zero Monthly Fees</span>
@@ -85,7 +85,7 @@ export function CoverView({ onNavigate }: CoverViewProps) {
             </p>
           </div>
 
-          <div className="rounded-xl border border-border bg-muted/20 p-5 space-y-2.5">
+          <div className="rounded-xl border border-border bg-muted/20 p-5 space-y-2.5 transition-all duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-sm">
             <div className="flex items-center gap-2.5 text-foreground font-semibold text-sm">
               <HardDrive className="h-4 w-4 text-primary" />
               <span>All Your Memories in Full Quality</span>
@@ -95,7 +95,7 @@ export function CoverView({ onNavigate }: CoverViewProps) {
             </p>
           </div>
 
-          <div className="rounded-xl border border-border bg-muted/20 p-5 space-y-2.5">
+          <div className="rounded-xl border border-border bg-muted/20 p-5 space-y-2.5 transition-all duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-sm">
             <div className="flex items-center gap-2.5 text-foreground font-semibold text-sm">
               <Smartphone className="h-4 w-4 text-primary" />
               <span>Connected Across All Devices</span>
