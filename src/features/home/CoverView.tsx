@@ -1,18 +1,16 @@
 import { 
-  Database, 
-  ShieldCheck, 
-  HardDrive, 
-  KeyRound, 
-  Cpu, 
+  FolderLock, 
   ArrowRight, 
-  Terminal, 
-  LogIn, 
-  UserPlus 
+  Sparkles, 
+  ShieldCheck, 
+  Layers, 
+  Laptop, 
+  Film, 
+  Archive, 
+  PlugZap 
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { CLUSTER_TOPOLOGY } from '@/mocks/initialData';
+import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface CoverViewProps {
   onNavigate: (view: 'explorer' | 'health' | 'keys' | 'login' | 'register') => void;
@@ -20,162 +18,174 @@ interface CoverViewProps {
 
 export function CoverView({ onNavigate }: CoverViewProps) {
   return (
-    <div className="flex-1 flex flex-col justify-between p-6 max-w-6xl mx-auto w-full space-y-12">
-      {/* Top Banner / System Status */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-4 border-b border-border pb-6">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-sm">
-            <Database className="h-6 w-6" />
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h1 className="text-xl font-bold tracking-tight text-foreground">Castor Object Store</h1>
-              <Badge variant="healthy" className="gap-1.5 text-[11px] py-0">
-                <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
-                Cluster Online
-              </Badge>
-            </div>
-            <p className="text-xs text-muted-foreground">
-              S3-Compatible • Content-Addressed 4MB Chunks • Majority Quorum ($W=2, R=3$)
-            </p>
-          </div>
+    <div className="flex-1 flex flex-col justify-center py-6 sm:py-12 max-w-5xl mx-auto w-full space-y-16">
+      {/* Hero Section */}
+      <section className="text-center space-y-6 max-w-3xl mx-auto">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-muted/50 text-xs text-muted-foreground font-medium">
+          <Sparkles className="h-3.5 w-3.5 text-primary" />
+          <span>Simple, private cloud storage</span>
+          <span className="text-border">•</span>
+          <span className="flex items-center gap-1.5 text-green-600 dark:text-green-400 font-normal">
+            <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
+            Online & Ready
+          </span>
         </div>
 
-        {/* User Portal Actions */}
-        <div className="flex items-center gap-2">
+        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground leading-[1.15]">
+          Store, protect, and access all your files in one place.
+        </h1>
+
+        <p className="text-base sm:text-lg text-muted-foreground leading-relaxed font-normal max-w-2xl mx-auto">
+          Castor is your own self-hosted cloud storage. Think of it like your personal, ultra-reliable 
+          Dropbox or Google Drive — secure, always online, and completely under your control.
+        </p>
+
+        {/* Primary Call to Actions */}
+        <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+          <Button 
+            size="lg" 
+            onClick={() => onNavigate('explorer')} 
+            className="gap-2 px-6 text-sm font-semibold shadow-sm"
+          >
+            <span>Open File Explorer</span>
+            <ArrowRight className="h-4 w-4" />
+          </Button>
+
           <Button 
             variant="outline" 
-            size="sm" 
-            onClick={() => onNavigate('login')}
-            className="gap-1.5 text-xs"
+            size="lg" 
+            onClick={() => onNavigate('login')} 
+            className="text-sm px-6 font-medium"
           >
-            <LogIn className="h-3.5 w-3.5" />
-            Sign In
-          </Button>
-          <Button 
-            size="sm" 
-            onClick={() => onNavigate('register')}
-            className="gap-1.5 text-xs"
-          >
-            <UserPlus className="h-3.5 w-3.5" />
-            Create Account
+            Sign In / Register
           </Button>
         </div>
-      </div>
+      </section>
 
-      {/* Hero Statement */}
-      <div className="text-center max-w-2xl mx-auto space-y-3 py-4">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-muted/60 text-xs text-muted-foreground font-mono">
-          <ShieldCheck className="h-3.5 w-3.5 text-primary" />
-          <span>Linearizable Consensus with BadgerDB + HashiCorp Raft</span>
+      {/* Practical Use Cases Grid */}
+      <section className="space-y-6">
+        <div className="text-center space-y-1">
+          <h2 className="text-xl font-bold tracking-tight text-foreground">
+            What can you use Castor for?
+          </h2>
+          <p className="text-xs text-muted-foreground">
+            Built to handle everyday storage needs as well as heavy media and backups.
+          </p>
         </div>
-        <h2 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-          High-performance distributed storage for modern workloads.
-        </h2>
-        <p className="text-sm text-muted-foreground leading-relaxed">
-          Stateless S3 gateway front-door, in-memory chunk deduplication, autonomous replica healing, 
-          and periodic 7-day bit-rot scrubbing.
-        </p>
-      </div>
 
-      {/* Gateway Portals Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Portal 1: Bucket & Object Explorer */}
-        <Card className="flex flex-col justify-between hover:border-primary/50 transition-colors">
-          <CardHeader>
-            <div className="flex items-center justify-between mb-1">
-              <div className="flex h-8 w-8 items-center justify-center rounded-md bg-blue-500/10 text-blue-500">
-                <HardDrive className="h-4 w-4" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Use Case 1: Media & Documents */}
+          <Card className="hover:border-foreground/20 transition-all shadow-xs">
+            <CardHeader className="pb-3">
+              <div className="h-10 w-10 rounded-lg bg-blue-500/10 text-blue-500 flex items-center justify-center mb-2">
+                <Film className="h-5 w-5" />
               </div>
-              <span className="text-[11px] font-mono text-muted-foreground">Port :9001</span>
-            </div>
-            <CardTitle className="text-base">Bucket & Object Explorer</CardTitle>
-            <CardDescription className="text-xs leading-relaxed">
-              Create storage buckets, browse folder hierarchies, stream downloads, and upload files directly via the 4MB in-process chunker.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="pt-0">
-            <Button 
-              variant="secondary" 
-              className="w-full justify-between text-xs"
-              onClick={() => onNavigate('explorer')}
-            >
-              <span>Launch Explorer</span>
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Button>
-          </CardContent>
-        </Card>
+              <CardTitle className="text-base font-semibold">Media & Documents</CardTitle>
+              <CardDescription className="text-xs leading-relaxed text-muted-foreground">
+                Safely store videos, family photo albums, and large project files. Stream or download them anytime with high speed and zero bandwidth restrictions.
+              </CardDescription>
+            </CardHeader>
+          </Card>
 
-        {/* Portal 2: Cluster Health & Telemetry */}
-        <Card className="flex flex-col justify-between hover:border-primary/50 transition-colors">
-          <CardHeader>
-            <div className="flex items-center justify-between mb-1">
-              <div className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-500/10 text-emerald-500">
-                <Cpu className="h-4 w-4" />
+          {/* Use Case 2: Automated Backups */}
+          <Card className="hover:border-foreground/20 transition-all shadow-xs">
+            <CardHeader className="pb-3">
+              <div className="h-10 w-10 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center mb-2">
+                <Archive className="h-5 w-5" />
               </div>
-              <span className="text-[11px] font-mono text-muted-foreground">Admin :9071</span>
-            </div>
-            <CardTitle className="text-base">Cluster Health & Ops</CardTitle>
-            <CardDescription className="text-xs leading-relaxed">
-              Inspect active Raft consensus, monitor disk capacity across storage nodes, and observe leader-only bit-rot scrubber progress.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="pt-0">
-            <Button 
-              variant="secondary" 
-              className="w-full justify-between text-xs"
-              onClick={() => onNavigate('health')}
-            >
-              <span>View Cluster Health</span>
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Button>
-          </CardContent>
-        </Card>
+              <CardTitle className="text-base font-semibold">Automatic Backups</CardTitle>
+              <CardDescription className="text-xs leading-relaxed text-muted-foreground">
+                Keep daily snapshots of your computers, databases, and servers safe. Identical duplicate files are automatically detected to avoid wasting space.
+              </CardDescription>
+            </CardHeader>
+          </Card>
 
-        {/* Portal 3: S3 API Credentials */}
-        <Card className="flex flex-col justify-between hover:border-primary/50 transition-colors">
-          <CardHeader>
-            <div className="flex items-center justify-between mb-1">
-              <div className="flex h-8 w-8 items-center justify-center rounded-md bg-indigo-500/10 text-indigo-500">
-                <KeyRound className="h-4 w-4" />
+          {/* Use Case 3: App Assets & Tools */}
+          <Card className="hover:border-foreground/20 transition-all shadow-xs">
+            <CardHeader className="pb-3">
+              <div className="h-10 w-10 rounded-lg bg-purple-500/10 text-purple-500 flex items-center justify-center mb-2">
+                <PlugZap className="h-5 w-5" />
               </div>
-              <span className="text-[11px] font-mono text-muted-foreground">Auth :9095</span>
-            </div>
-            <CardTitle className="text-base">S3 Credentials & Keys</CardTitle>
-            <CardDescription className="text-xs leading-relaxed">
-              Generate Amazon SigV4 keypairs to connect standard tools like AWS CLI, Boto3, Rclone, or Cyberduck against port :9000.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="pt-0">
-            <Button 
-              variant="secondary" 
-              className="w-full justify-between text-xs"
-              onClick={() => onNavigate('keys')}
-            >
-              <span>Manage API Keys</span>
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
+              <CardTitle className="text-base font-semibold">Connect Any App</CardTitle>
+              <CardDescription className="text-xs leading-relaxed text-muted-foreground">
+                Connect external apps, desktop sync clients, or website uploads using standard S3 keys. If your favorite app supports cloud storage, it works with Castor.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        </div>
+      </section>
 
-      {/* Cluster Topology & Endpoints Matrix from Centralized Definition */}
-      <div className="rounded-lg border border-border bg-surface p-4 space-y-3">
-        <div className="flex items-center justify-between text-xs font-medium text-foreground">
-          <div className="flex items-center gap-2">
-            <Terminal className="h-4 w-4 text-muted-foreground" />
-            <span>Active Cluster Endpoint Catalog</span>
+      {/* Why Choose Castor (Key Highlights) */}
+      <section className="rounded-xl border border-border bg-muted/20 p-6 sm:p-8 space-y-6">
+        <div className="text-center space-y-1">
+          <h2 className="text-lg font-bold tracking-tight text-foreground">
+            Simple, private, and durable by design
+          </h2>
+          <p className="text-xs text-muted-foreground">
+            Peace of mind knowing your data is safe and always accessible.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-xs">
+          <div className="flex items-start gap-3 p-2">
+            <FolderLock className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+            <div className="space-y-1">
+              <p className="font-semibold text-foreground">100% Private</p>
+              <p className="text-muted-foreground text-[11px] leading-relaxed">
+                Your data stays exclusively on your infrastructure. No third-party analytics or lock-in.
+              </p>
+            </div>
           </div>
-          <span className="text-muted-foreground font-mono">Quorum W=2, R=3</span>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 text-xs font-mono">
-          {CLUSTER_TOPOLOGY.map((service) => (
-            <div key={service.name} className="rounded-md border border-border bg-muted/40 p-2.5">
-              <div className="text-[11px] text-muted-foreground truncate">{service.name}</div>
-              <div className="text-foreground font-semibold truncate">{service.url}</div>
-              <div className="text-[10px] text-muted-foreground/75 truncate mt-0.5">{service.engine}</div>
+
+          <div className="flex items-start gap-3 p-2">
+            <Layers className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+            <div className="space-y-1">
+              <p className="font-semibold text-foreground">Smart Deduplication</p>
+              <p className="text-muted-foreground text-[11px] leading-relaxed">
+                Identical files share storage automatically, saving up to 30%+ of your hard drive capacity.
+              </p>
             </div>
-          ))}
+          </div>
+
+          <div className="flex items-start gap-3 p-2">
+            <ShieldCheck className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+            <div className="space-y-1">
+              <p className="font-semibold text-foreground">Continuous Protection</p>
+              <p className="text-muted-foreground text-[11px] leading-relaxed">
+                Continuous background health audits verify file integrity and prevent digital data rot.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3 p-2">
+            <Laptop className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+            <div className="space-y-1">
+              <p className="font-semibold text-foreground">Universal Compatibility</p>
+              <p className="text-muted-foreground text-[11px] leading-relaxed">
+                Connect tools like Cyberduck, AWS CLI, rclone, or Python scripts in a matter of seconds.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Subtle Operator & Developer Shortcuts Footer */}
+      <div className="flex flex-col sm:flex-row items-center justify-between text-xs text-muted-foreground border-t border-border pt-6 gap-3">
+        <span className="font-medium text-foreground">Advanced Options:</span>
+        <div className="flex items-center gap-4">
+          <button 
+            onClick={() => onNavigate('health')} 
+            className="hover:text-foreground transition-colors underline-offset-4 hover:underline"
+          >
+            System Status & Storage Nodes →
+          </button>
+          <span>•</span>
+          <button 
+            onClick={() => onNavigate('keys')} 
+            className="hover:text-foreground transition-colors underline-offset-4 hover:underline"
+          >
+            Connect External Apps (API Keys) →
+          </button>
         </div>
       </div>
     </div>

@@ -62,12 +62,12 @@ export default function App() {
       {/* Global Footer */}
       <footer className="border-t border-border py-4 px-6 text-center text-xs text-muted-foreground flex flex-col sm:flex-row items-center justify-between gap-2 max-w-7xl mx-auto w-full">
         <div className="flex items-center gap-2">
-          <span className="font-semibold text-foreground">Castor UI</span>
+          <span className="font-semibold text-foreground">Castor</span>
           <span>•</span>
-          <span>Stateless Browser BFF on Port :9001</span>
+          <span>Private, High-Performance Cloud Storage</span>
         </div>
-        <div className="font-mono text-[11px]">
-          Linearizable Metadata (Raft) • Fixed 4MB Chunking (SHA-256)
+        <div className="text-[11px] text-muted-foreground">
+          Self-Hosted • S3-Compatible • Deduplicated Storage
         </div>
       </footer>
     </div>
