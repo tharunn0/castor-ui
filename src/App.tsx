@@ -67,7 +67,7 @@ export default function App() {
           <span>Private, High-Performance Cloud Storage</span>
         </div>
         <div className="text-[11px] text-muted-foreground">
-          Self-Hosted • S3-Compatible • Deduplicated Storage
+          Simple, private, and secure personal cloud.
         </div>
       </footer>
     </div>
